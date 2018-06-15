@@ -4,7 +4,8 @@ extern crate rpassword;
 extern crate rustotpony;
 
 use clap::{App, Arg, SubCommand};
-use rustotpony::*;
+use rustotpony::databases::json::JsonDatabase;
+use rustotpony::RusTOTPony;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::thread;
