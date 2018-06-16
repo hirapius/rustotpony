@@ -14,6 +14,11 @@ use rand::{OsRng, Rng};
 
 const DATABASE_VERSION: u8 = 1;
 
+pub struct JsonDatabase {
+    file_path: PathBuf,
+    secret_fn: &'static Fn() -> String,
+}
+
 // Database implementation for JSON database
 impl Database for JsonDatabase {
     fn get_applications(&self) -> HashMap<String, TOTP> {
@@ -37,11 +42,6 @@ struct JsonDatabaseSchema {
 #[derive(Serialize, Deserialize)]
 struct DatabaseContentSchema {
     applications: HashMap<String, TOTP>,
-}
-
-pub struct JsonDatabase {
-    file_path: PathBuf,
-    secret_fn: &'static Fn() -> String,
 }
 
 const IV_SIZE: usize = 16;
